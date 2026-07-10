@@ -1,0 +1,184 @@
+/* Estilo Principal - Tema Biomedicina Tech (Cyber Lab) */
+:root {
+  color-scheme: dark;
+  --bg-principal: #0b0f19;      /* Azul escuro profundo */
+  --bg-card: #151c2c;           /* Cinza azulado dos painéis */
+  --verde-bio: #22c55e;          /* Verde biológico principal */
+  --verde-neon: #4ade80;         /* Verde fluorescente para destaques */
+  --texto-claro: #f8fafc;
+  --texto-mutado: #94a3b8;
+  --borda: #1e293b;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--bg-principal);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+  line-height: 1.5;
+}
+
+/* Container Master que envelopa o App */
+.container-app {
+  width: min(100%, 700px);
+  background: var(--bg-card);
+  padding: 36px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--borda);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Detalhe estético: uma linha brilhante no topo com a identidade do lab */
+.container-app::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, var(--verde-bio));
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--texto-claro);
+  margin-top: 0;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+/* Subtítulo indicando a área profissional */
+.container-app h2 + p {
+  text-align: center;
+  color: var(--verde-neon);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--texto-mutado);
+  margin-bottom: 8px;
+}
+
+/* Inputs com cara de terminal de laboratório */
+input, select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--borda);
+  border-radius: 12px;
+  background: #0f1422;
+  color: var(--texto-claro);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--verde-bio);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+/* Botão de Ação Biomédica com Brilho */
+button {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1d4ed8 0%, var(--verde-bio) 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 28px 0 12px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--borda);
+  margin: 24px 0;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto-claro);
+  margin-bottom: 16px;
+}
+
+/* Card do Laudo Automatizado */
+#resultado-laudo {
+  padding: 24px;
+  border-radius: 16px;
+  background: #0f1422;
+  border: 2px dashed var(--borda);
+  transition: all 0.3s ease;
+}
+
+/* Quando o laudo estiver preenchido, a borda fica verde neon estilosa */
+#resultado-laudo:not(:empty) {
+  border: 2px solid rgba(74, 222, 128, 0.3);
+  box-shadow: inset 0 0 12px rgba(74, 222, 128, 0.05);
+}
+
+#resultado-laudo h4 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: var(--verde-neon);
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 10px;
+}
+
+#resultado-laudo ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+#resultado-laudo li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+#resultado-laudo strong {
+  color: var(--texto-claro);
+}
