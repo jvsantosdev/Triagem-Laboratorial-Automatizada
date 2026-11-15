@@ -1,0 +1,19 @@
+{
+  "name": "triagem-laboratorial-automatizada",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Triagem laboratorial automatizada: motor de regras com valores de referência, cálculos clínicos e fila de prioridade. Projeto educacional.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  }
+}

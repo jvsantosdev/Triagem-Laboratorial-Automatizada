@@ -3,51 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisador de Laudos Biomédicos</title>
-    <link rel="stylesheet" href="./Styles/style.css">
+    <meta name="description" content="Triagem laboratorial automatizada: 36 exames, cálculos clínicos e fila de prioridade por valor crítico. Projeto educacional.">
+    <title>Triagem Laboratorial Automatizada</title>
 </head>
 <body>
+    <main class="layout">
+        <section class="container-app">
+            <h2>Analisador de Exames</h2>
+            <p>Triagem Laboratorial Automatizada</p>
 
-    <div class="container-app">
-    <h2>Analisador de Exames</h2>
-    <p>Triagem Laboratorial Automatizada</p> 
-        
-        <div class="form-group">
-            <label>Nome do Paciente:</label>
-            <input type="text" id="nome-paciente">
-        </div>
+            <form id="form-triagem" novalidate>
+                <div class="grade paciente">
+                    <label class="campo largo">
+                        <span>Nome do paciente</span>
+                        <input type="text" name="nome" autocomplete="off" placeholder="Use dados fictícios">
+                    </label>
+                    <label class="campo">
+                        <span>Sexo biológico</span>
+                        <select name="sexo">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                    </label>
+                    <label class="campo">
+                        <span>Idade (anos)</span>
+                        <input type="number" name="idade" min="0" max="120" step="1" value="30" required>
+                    </label>
+                </div>
 
-        <div class="form-group">
-            <label>Sexo Biológico:</label>
-            <select id="sexo-paciente">
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-            </select>
-        </div>
+                <p class="dica">Preencha só os exames que tiver. Os índices (VCM, HCM, CHCM), o LDL, o não-HDL e a TFG são calculados automaticamente.</p>
+                <div id="campos-exames"></div>
 
-        <div class="form-group">
-            <label>Glicose de Jejum (mg/dL):</label>
-            <input type="number" id="valor-glicose">
-        </div>
+                <p id="erro" class="erro" role="alert"></p>
+                <div class="acoes">
+                    <button type="button" id="limpar-form" class="secundario">Limpar</button>
+                    <button type="submit">Analisar amostra</button>
+                </div>
+            </form>
 
-        <div class="form-group">
-            <label>Hemoglobina (g/dL):</label>
-            <input type="number" id="valor-hemoglobina" step="0.1">
-        </div>
+            <hr>
+            <h3>Laudo técnico preliminar</h3>
+            <div id="resultado-laudo"></div>
+        </section>
 
-        <div class="form-group">
-            <label>Leucócitos (/mm³):</label>
-            <input type="number" id="valor-leucocitos">
-        </div>
-
-        <button id="btn-analisar">Analisar Amostra</button>
-
-        <hr>
-        
-        <h3>Laudo Técnico Preliminar:</h3>
-        <div id="resultado-laudo"></div> 
-
-    </div>
-    <script src="./Scripts/script.js"></script>
+        <aside class="container-app fila-container">
+            <h3>Fila de prioridade</h3>
+            <p class="dica">Valores críticos sobem para o topo.</p>
+            <div id="fila"></div>
+        </aside>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

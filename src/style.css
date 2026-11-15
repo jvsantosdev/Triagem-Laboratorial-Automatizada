@@ -1,0 +1,451 @@
+/* Estilo Principal - Tema Biomedicina Tech (Cyber Lab) */
+:root {
+  color-scheme: dark;
+  --bg-principal: #0b0f19;      /* Azul escuro profundo */
+  --bg-card: #151c2c;           /* Cinza azulado dos painéis */
+  --bg-campo: #0f1422;
+  --verde-bio: #22c55e;          /* Verde biológico principal */
+  --verde-neon: #4ade80;         /* Verde fluorescente para destaques */
+  --ambar: #f59e0b;              /* Alterado */
+  --vermelho: #ef4444;           /* Crítico */
+  --texto-claro: #f8fafc;
+  --texto-mutado: #94a3b8;
+  --borda: #1e293b;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--bg-principal);
+  color: var(--texto-claro);
+}
+
+body {
+  padding: 40px 16px;
+  line-height: 1.5;
+}
+
+/* Layout: formulário + laudo à esquerda, fila de prioridade à direita */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 780px) minmax(260px, 340px);
+  gap: 24px;
+  justify-content: center;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 780px);
+  }
+}
+
+/* Container Master que envelopa o App */
+.container-app {
+  width: 100%;
+  background: var(--bg-card);
+  padding: 36px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--borda);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Detalhe estético: uma linha brilhante no topo com a identidade do lab */
+.container-app::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, var(--verde-bio));
+}
+
+.fila-container {
+  position: sticky;
+  top: 24px;
+  padding: 28px;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--texto-claro);
+  margin-top: 0;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+/* Subtítulo indicando a área profissional */
+.container-app h2 + p {
+  text-align: center;
+  color: var(--verde-neon);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto-claro);
+  margin: 0 0 12px;
+}
+
+.dica {
+  color: var(--texto-mutado);
+  font-size: 0.85rem;
+  margin: 8px 0 16px;
+}
+
+/* Grade de campos */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.grade.paciente {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+@media (max-width: 640px) {
+  .grade.paciente {
+    grid-template-columns: 1fr;
+  }
+  .container-app {
+    padding: 24px 18px;
+  }
+}
+
+.campo span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--texto-mutado);
+  margin-bottom: 6px;
+}
+
+.campo small {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* Inputs com cara de terminal de laboratório */
+input, select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--borda);
+  border-radius: 12px;
+  background: var(--bg-campo);
+  color: var(--texto-claro);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--verde-bio);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+/* Painéis de exames por grupo */
+.painel {
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  background: rgba(15, 20, 34, 0.5);
+}
+
+.painel summary {
+  cursor: pointer;
+  padding: 14px 18px;
+  font-weight: 700;
+  color: var(--texto-claro);
+  list-style-position: inside;
+}
+
+.painel[open] summary {
+  border-bottom: 1px solid var(--borda);
+}
+
+.painel .grade {
+  padding: 16px 18px 18px;
+}
+
+.calc-info {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--verde-neon);
+  margin-left: 6px;
+}
+
+.erro {
+  color: var(--vermelho);
+  font-weight: 600;
+  min-height: 1.5em;
+  margin: 12px 0 0;
+}
+
+/* Botões */
+.acoes {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.acoes button {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1d4ed8 0%, var(--verde-bio) 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+.acoes button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+  filter: brightness(1.1);
+}
+
+.acoes button.secundario {
+  background: transparent;
+  border: 2px solid var(--borda);
+  color: var(--texto-mutado);
+  box-shadow: none;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--borda);
+  margin: 24px 0;
+}
+
+/* Card do Laudo Automatizado */
+#resultado-laudo {
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--bg-campo);
+  border: 2px dashed var(--borda);
+  transition: all 0.3s ease;
+  min-height: 80px;
+}
+
+#resultado-laudo:not(:empty) {
+  border: 2px solid rgba(74, 222, 128, 0.3);
+  box-shadow: inset 0 0 12px rgba(74, 222, 128, 0.05);
+}
+
+.laudo-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.laudo-cabecalho h4 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--verde-neon);
+}
+
+.meta {
+  color: var(--texto-mutado);
+  font-size: 0.8rem;
+  margin: 2px 0 0;
+}
+
+.aviso {
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 3px solid var(--ambar);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.resumo ul {
+  margin: 8px 0 16px;
+  padding-left: 18px;
+}
+
+.resumo li.nivel-critico { color: #fca5a5; font-weight: 700; }
+.resumo li.nivel-alterado { color: #fcd34d; }
+
+.tudo-normal {
+  color: var(--verde-neon);
+  font-weight: 600;
+}
+
+/* Badges de nível e prioridade */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge.nivel-normal, .badge.prioridade-baixa { background: rgba(34, 197, 94, 0.15); color: var(--verde-neon); }
+.badge.nivel-alterado, .badge.prioridade-media { background: rgba(245, 158, 11, 0.15); color: #fcd34d; }
+.badge.nivel-critico, .badge.prioridade-alta { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+
+.laudo-cabecalho .badge {
+  white-space: normal;
+  max-width: 280px;
+}
+
+/* Tabelas do laudo */
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.9rem;
+}
+
+.tabela caption {
+  text-align: left;
+  font-weight: 700;
+  color: var(--verde-neon);
+  padding-bottom: 6px;
+}
+
+.tabela th, .tabela td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--borda);
+  vertical-align: top;
+  color: #cbd5e1;
+}
+
+.tabela th {
+  color: var(--texto-mutado);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tabela td.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--texto-claro);
+  font-weight: 600;
+}
+
+.tabela tr.nivel-critico td { background: rgba(239, 68, 68, 0.08); }
+.tabela tr.nivel-alterado td { background: rgba(245, 158, 11, 0.05); }
+
+.tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-mutado);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  padding: 1px 5px;
+  cursor: help;
+}
+
+.rodape {
+  color: var(--texto-mutado);
+  font-size: 0.75rem;
+  margin: 16px 0 0;
+}
+
+/* Fila de prioridade */
+.fila {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.fila li {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--bg-campo);
+}
+
+.fila li.ativa {
+  border-color: var(--verde-bio);
+}
+
+.item-fila {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  align-items: center;
+  text-align: left;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 10px 12px;
+}
+
+.item-fila .nome {
+  font-weight: 700;
+}
+
+.item-fila .meta {
+  grid-column: 2;
+  margin: 0;
+}
+
+.ponto {
+  grid-row: span 2;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ponto.prioridade-alta { background: var(--vermelho); box-shadow: 0 0 8px var(--vermelho); }
+.ponto.prioridade-media { background: var(--ambar); }
+.ponto.prioridade-baixa { background: var(--verde-bio); }
+
+.remover {
+  background: none;
+  border: none;
+  color: var(--texto-mutado);
+  padding: 0 12px;
+}
+
+.remover:hover {
+  color: var(--vermelho);
+}
+
+.vazio {
+  color: var(--texto-mutado);
+  font-size: 0.9rem;
+}
