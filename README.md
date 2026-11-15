@@ -48,13 +48,13 @@ src/
 ├── data/exames.ts    → tabela de exames e valores de referência
 ├── ui/               → renderização, formatação e localStorage
 └── main.ts
-tests/                → 84 testes (Vitest)
+tests/                → 93 testes (Vitest)
 ```
 
 ## Stack
 
 - **TypeScript** (strict) + **Vite**, sem framework: o foco está na lógica de domínio.
-- **Vitest**: 84 testes cobrindo as faixas de cada exame, os limites (inclusivo/exclusivo), os valores críticos, as fórmulas (TFG conferida com a equação publicada) e a integridade da tabela.
+- **Vitest**: 93 testes cobrindo as faixas de cada exame, os limites (inclusivo/exclusivo), os valores críticos, as fórmulas (TFG conferida com a equação publicada) e a integridade da tabela.
 - **GitHub Actions**: roda os testes e o build a cada push e publica no GitHub Pages.
 
 ## Rodar localmente
