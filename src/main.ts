@@ -1,3 +1,5 @@
+import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
 import "./style.css";
 import { triar, type Triagem } from "./core/triagem";
 import type { Valores } from "./core/calculos";
@@ -62,7 +64,7 @@ fila.addEventListener("click", (ev) => {
     salvar(triagens);
     if (selecionada === alvo.dataset.remover) {
       selecionada = undefined;
-      laudo.innerHTML = "";
+      laudo.innerHTML = `<p class="vazio">Amostra removida. Escolha outra na fila ou analise uma nova.</p>`;
     }
     atualizarFila();
   } else {
@@ -80,7 +82,8 @@ function mostrar(t: Triagem) {
   selecionada = t.id;
   laudo.innerHTML = renderizarLaudo(t);
   atualizarFila();
-  laudo.scrollIntoView({ behavior: "smooth", block: "start" });
+  const suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  laudo.scrollIntoView({ behavior: suave ? "smooth" : "auto", block: "start" });
 }
 
 function atualizarFila() {

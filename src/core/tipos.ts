@@ -54,10 +54,14 @@ export interface Exame {
   observacao?: string;
 }
 
+/** De que lado da faixa normal o resultado caiu. */
+export type Direcao = "baixo" | "alto" | null;
+
 export interface Resultado {
   exame: Exame;
   valor: number;
   faixa: Faixa;
+  direcao: Direcao;
   referencia: string;
 }
 

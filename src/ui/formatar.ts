@@ -15,7 +15,7 @@ export function formatarData(iso: string): string {
 export const ROTULO_NIVEL: Record<Nivel, string> = { normal: "Normal", alterado: "Alterado", critico: "Crítico" };
 
 export const ROTULO_PRIORIDADE: Record<Prioridade, string> = {
-  alta: "Prioridade alta: valor crítico, comunicar imediatamente",
-  media: "Prioridade média: resultados alterados",
-  baixa: "Prioridade baixa: resultados dentro da referência",
+  alta: "Prioridade alta. Há valor crítico: comunique ao médico responsável.",
+  media: "Prioridade média. Há resultados fora da referência.",
+  baixa: "Prioridade baixa. Resultados dentro da referência.",
 };

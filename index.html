@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Triagem laboratorial automatizada: 36 exames, cálculos clínicos e fila de prioridade por valor crítico. Projeto educacional.">
-    <title>Triagem Laboratorial Automatizada</title>
+    <meta name="description" content="Triagem laboratorial automatizada: classifica 36 exames, calcula índices clínicos e ordena as amostras por urgência. Projeto educacional.">
+    <title>Triagem laboratorial</title>
 </head>
 <body>
-    <main class="layout">
-        <section class="container-app">
-            <h2>Analisador de Exames</h2>
-            <p>Triagem Laboratorial Automatizada</p>
+    <header class="topo">
+        <h1>Triagem laboratorial</h1>
+        <p>Classifica resultados de exames e ordena as amostras por urgência. Projeto educacional: use só dados fictícios.</p>
+    </header>
+
+    <main class="bancada">
+        <section class="requisicao" aria-labelledby="titulo-requisicao">
+            <h2 id="titulo-requisicao">Requisição</h2>
 
             <form id="form-triagem" novalidate>
-                <div class="grade paciente">
-                    <label class="campo largo">
-                        <span>Nome do paciente</span>
-                        <input type="text" name="nome" autocomplete="off" placeholder="Use dados fictícios">
+                <fieldset class="paciente">
+                    <legend>Paciente</legend>
+                    <label class="campo nome">
+                        <span>Nome</span>
+                        <input type="text" name="nome" autocomplete="off" placeholder="Ex.: Maria Teste">
                     </label>
                     <label class="campo">
                         <span>Sexo biológico</span>
@@ -26,29 +31,32 @@
                         </select>
                     </label>
                     <label class="campo">
-                        <span>Idade (anos)</span>
+                        <span>Idade</span>
                         <input type="number" name="idade" min="0" max="120" step="1" value="30" required>
                     </label>
-                </div>
+                </fieldset>
 
-                <p class="dica">Preencha só os exames que tiver. Os índices (VCM, HCM, CHCM), o LDL, o não-HDL e a TFG são calculados automaticamente.</p>
+                <p class="dica">Preencha só os exames que tiver. VCM, HCM, CHCM, LDL, não-HDL e TFG são calculados a partir dos outros resultados.</p>
                 <div id="campos-exames"></div>
 
                 <p id="erro" class="erro" role="alert"></p>
                 <div class="acoes">
-                    <button type="button" id="limpar-form" class="secundario">Limpar</button>
-                    <button type="submit">Analisar amostra</button>
+                    <button type="button" id="limpar-form" class="secundario">Limpar requisição</button>
+                    <button type="submit" class="primario">Analisar amostra</button>
                 </div>
             </form>
 
-            <hr>
-            <h3>Laudo técnico preliminar</h3>
-            <div id="resultado-laudo"></div>
+            <section class="laudo-area" aria-labelledby="titulo-laudo">
+                <h2 id="titulo-laudo">Laudo preliminar</h2>
+                <div id="resultado-laudo" aria-live="polite">
+                    <p class="vazio">Preencha a requisição e clique em Analisar amostra para gerar o laudo.</p>
+                </div>
+            </section>
         </section>
 
-        <aside class="container-app fila-container">
-            <h3>Fila de prioridade</h3>
-            <p class="dica">Valores críticos sobem para o topo.</p>
+        <aside class="fila-area" aria-labelledby="titulo-fila">
+            <h2 id="titulo-fila">Fila de amostras</h2>
+            <p class="dica">Amostras com valor crítico ficam no topo.</p>
             <div id="fila"></div>
         </aside>
     </main>

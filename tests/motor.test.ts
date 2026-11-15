@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { exame } from "../src/data/exames";
-import { classificar, encontrarFaixa, piorNivel, prioridade } from "../src/core/motor";
+import { classificar, encontrarFaixa, flag, piorNivel, prioridade } from "../src/core/motor";
 import type { Paciente } from "../src/core/tipos";
 
 const homem: Paciente = { nome: "H", sexo: "M", idade: 40 };
@@ -101,5 +101,23 @@ describe("prioridade", () => {
     const resultados = [r("glicose", 90), r("potassio", 7.0), r("hemoglobina", 15)];
     expect(piorNivel(resultados)).toBe("critico");
     expect(prioridade(resultados)).toBe("alta");
+  });
+});
+
+describe("flags L/H", () => {
+  const f = (id: string, valor: number) => flag(classificar(exame(id), valor, homem));
+
+  it.each([
+    ["glicose", 90, ""],
+    ["glicose", 65, "L"],
+    ["glicose", 35, "LL"],
+    ["glicose", 110, "H"],
+    ["glicose", 520, "HH"],
+    ["hdl", 35, "L"],
+    ["tgo", 80, "H"],
+    ["tfg", 50, "L"],
+    ["tfg", 10, "LL"],
+  ])("%s = %d → '%s'", (id, valor, esperado) => {
+    expect(f(id, valor)).toBe(esperado);
   });
 });

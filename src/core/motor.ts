@@ -32,12 +32,23 @@ export function classificar(exame: Exame, valor: number, paciente: Paciente): Re
     throw new Error(`Valor inválido para "${exame.id}": ${valor}`);
   }
   const variante = escolherVariante(exame, paciente);
+  const faixa = encontrarFaixa(variante.faixas, valor);
+  const posicao = variante.faixas.indexOf(faixa);
+  const posicaoNormal = variante.faixas.findIndex((f) => f.nivel === "normal");
   return {
     exame,
     valor,
-    faixa: encontrarFaixa(variante.faixas, valor),
+    faixa,
+    direcao: posicao === posicaoNormal ? null : posicao < posicaoNormal ? "baixo" : "alto",
     referencia: referenciaPara(exame, paciente),
   };
+}
+
+/** Flag no padrão dos sistemas de laboratório: L/H para alterado, LL/HH para crítico. */
+export function flag(r: Resultado): string {
+  if (r.direcao === null) return "";
+  const letra = r.direcao === "baixo" ? "L" : "H";
+  return r.faixa.nivel === "critico" ? letra + letra : letra;
 }
 
 const PESO: Record<Nivel, number> = { normal: 0, alterado: 1, critico: 2 };
